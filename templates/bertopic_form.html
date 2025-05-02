@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BERTopic Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Analisis Topik dengan BERTopic</h1>
+
+        <p>Masukkan minimal <strong>3 kata</strong> untuk memprediksi topik dan melihat dokumen terkait.</p>
+
+        <form method="post" action="{{ url_for('bertopic') }}">
+            <input type="text" name="query" placeholder="Contoh: aku rindu pulang" required>
+            <button type="submit">Prediksi Topik</button>
+        </form>
+
+        <a href="{{ url_for('index') }}">⬅ Kembali ke Menu</a>
+    </div>
+</body>
+</html>

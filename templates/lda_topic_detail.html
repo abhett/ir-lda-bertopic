@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Topik {{ topic_id + 1 }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Detail Topik {{ topic_id + 1 }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kata</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word, score in word_scores %}
+                    <tr>
+                        <td>{{ word }}</td>
+                        <td>{{ "%.4f"|format(score) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('lda_topics') }}">⬅ Kembali ke daftar topik</a>
+    </div>
+</body>
+</html>

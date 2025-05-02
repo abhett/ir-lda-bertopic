@@ -1,0 +1,43 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Result for {{ method }}</h1>
+        {% if method == 'IR' %}
+            <ul>
+                {% for doc, score in results %}
+                    <li><strong>Score:</strong> {{ '%.4f'|format(score) }}<br>{{ doc }}</li>
+                {% endfor %}
+            </ul>
+        {% elif method == 'LDA' %}
+            <p><strong>Top Topic:</strong> {{ topic }}</p>
+            <p><strong>Distribution:</strong> {{ distribution|join(', ') }}</p>
+            {% elif method == 'BERTopic' %}
+            {% if topic == "too_short" %}
+                <p><strong>Masukkan minimal 3 kata untuk analisis.</strong></p>
+            {% elif topic == -1 %}
+                <p><strong>Topik tidak dikenali.</strong> Coba masukkan kalimat yang lebih panjang atau umum.</p>
+            {% else %}
+                <p><strong>Predicted Topic:</strong> {{ topic }}</p>
+                <p><strong>Top Words:</strong> {{ topic_words | join(', ') }}</p>
+                <p><strong>Confidence Score:</strong> {{ "%.4f"|format(confidence) }}</p>
+        
+                <h3>Dokumen lain dalam topik ini:</h3>
+                <ul>
+                    {% for doc in documents %}
+                        <li>{{ doc }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        
+        <a href="/">Back to Menu</a>
+    </div>
+</body>
+</html>

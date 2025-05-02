@@ -1,0 +1,19 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Analysis Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pilih Metode Analisis</h1>
+        <ul>
+            <li><a href="{{ url_for('ir_form') }}">Information Retrieval (IR)</a></li>
+            <li><a href="{{ url_for('lda_topics') }}">Latent Dirichlet Allocation (LDA)</a></li>
+            <li><a href="{{ url_for('bertopic_form') }}">BERTopic</a></li>
+        </ul>
+    </div>
+</body>
+</html>

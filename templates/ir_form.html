@@ -1,0 +1,19 @@
+<!-- templates/ir_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IR Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Information Retrieval</h1>
+        <form method="post" action="{{ url_for('ir') }}">
+            <input type="text" name="query" placeholder="Masukkan teks untuk IR" required>
+            <button type="submit">Cari</button>
+        </form>
+        <a href="{{ url_for('index') }}">⬅ Kembali</a>
+    </div>
+</body>
+</html>

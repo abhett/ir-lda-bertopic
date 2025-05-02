@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LDA Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Latent Dirichlet Allocation (LDA)</h1>
+        <form method="post" action="{{ url_for('lda') }}">
+            <input type="text" name="query" placeholder="Masukkan teks untuk LDA" required>
+            <button type="submit">Analisis Topik</button>
+        </form>
+        <a href="{{ url_for('index') }}">⬅ Kembali ke Menu</a>
+    </div>
+</body>
+</html>

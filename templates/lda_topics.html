@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Topik LDA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Topik Hasil LDA</h1>
+
+        <!-- 🔍 Form pencarian kata -->
+        <form method="post" action="{{ url_for('lda_topics') }}">
+            <input type="text" name="keyword" placeholder="Cari kata dalam topik..." value="{{ keyword or '' }}" required>
+            <button type="submit">Cari</button>
+        </form>
+
+        {% if keyword %}
+            <h2>Hasil pencarian untuk: <em>{{ keyword }}</em></h2>
+            {% if search_results %}
+                <ul>
+                    {% for res in search_results %}
+                        <li>
+                            <a href="{{ url_for('lda_topic_detail', topic_id=res.id) }}">
+                                Topik {{ res.id + 1 }}
+                            </a> — Score: {{ "%.4f"|format(res.score) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p><em>Kata tidak ditemukan dalam topik manapun.</em></p>
+            {% endif %}
+        {% endif %}
+
+        <hr>
+
+        <h2>Semua Topik</h2>
+        <ul>
+            {% for topic in topics %}
+                <li>
+                    <a href="{{ url_for('lda_topic_detail', topic_id=topic.id) }}">
+                        Topik {{ topic.id + 1 }}:
+                    </a> {{ topic.words | join(', ') }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('index') }}">⬅ Kembali ke Menu</a>
+    </div>
+</body>
+</html>

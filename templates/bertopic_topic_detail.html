@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topik {{ topic_id }} - BERTopic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Topik {{ topic_id }}</h1>
+        <ul>
+            {% for doc in documents %}
+                <li>{{ doc }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('bertopic_topics') }}">⬅ Kembali ke daftar topik</a>
+    </div>
+</body>
+</html>
